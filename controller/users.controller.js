@@ -1,35 +1,41 @@
 const express = require('express');
 const UserController = express.Router();
+const UserService = require('../service/user.service');
 
-UserController.get('/', (req, res, next) => {
+UserController.get('/', async (req, res, next) => {
+    const userResponse = await UserService.get();
     res.status(200).send({
-        res: "Hello World!"
+        res: userResponse
     })
 })
 
-UserController.post('/', (req, res, next) => {
+UserController.post('/', async (req, res, next) => {
+    const savedUser = await UserService.save(req.body);
     res.status(200).send({
-        res: "Hello World!"
+        res: savedUser
     })
 })
 
-UserController.put('/:id', (req, res, next) => {
+UserController.put('/', async (req, res, next) => {
+    const updatedUser = await UserService.put(req.body);
     res.status(200).send({
-        res: "Hello World!"
+        res: updatedUser
     })
 })
 
-UserController.delete('/:id', (req, res, next) => {
+UserController.delete('/:id', async (req, res, next) => {
+    const deletedUser = await UserService.remove(req.params.id);
     res.status(200).send({
-        res: "Hello World!"
+        res: deletedUser
     })
 })
 
 
-UserController.get('/:id', (req, res, next) => {
+UserController.get('/:id', async (req, res, next) => {
+    const id = req.params.id;
+    const getByIdResponse = await UserService.getById(id);
     res.status(200).send({
-        id: req.params.id,
-        res: "Hello World!"
+        res: getByIdResponse
     })
 })
 

@@ -2,8 +2,9 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const RootRouter = require('./route')
-app.use(RootRouter)
 app.use(express.json());
+app.use(RootRouter)
+
 
 
 app.listen(process.env.PORT, process.env.HOST, () => {
