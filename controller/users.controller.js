@@ -1,6 +1,7 @@
 const express = require('express');
 const UserController = express.Router();
 const UserService = require('../service/user.service');
+const { sign } = require('../utils/auth.util')
 
 UserController.get('/', async (req, res, next) => {
     const userResponse = await UserService.get();
@@ -11,8 +12,9 @@ UserController.get('/', async (req, res, next) => {
 
 UserController.post('/', async (req, res, next) => {
     const savedUser = await UserService.save(req.body);
+    const token = sign(req.body);
     res.status(200).send({
-        res: savedUser
+        res: { savedUser }
     })
 })
 

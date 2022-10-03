@@ -1,4 +1,4 @@
-const Model = require('./auth')
+const Model = require('./auth.model')
 
 class Users extends Model {
     static get tableName() {
