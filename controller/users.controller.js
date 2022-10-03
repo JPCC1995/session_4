@@ -14,7 +14,7 @@ UserController.post('/', async (req, res, next) => {
     const savedUser = await UserService.save(req.body);
     const token = sign(req.body);
     res.status(200).send({
-        res: { savedUser }
+        res: { savedUser, token }
     })
 })
 

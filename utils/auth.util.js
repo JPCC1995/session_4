@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const sign = (payload) => {
     return jwt.sign(payload, process.env.CIPHER, {
-        "alg": "HS256",
-        "typ": "JWT"
+        "algorithm": "HS256"
     })
 }
 
